@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"net/http"
-	"time"
 
 	"github.com/gin-gonic/gin"
 )
@@ -15,9 +14,10 @@ func hello(c *gin.Context) {
 
 func panicGo(c *gin.Context) {
 	fmt.Println("Vamos en entrar en panico en 5 seg")
-	time.AfterFunc(5*time.Second, func() {
-		panic("Entrando en panico")
-	})
+	c.JSON(http.StatusOK, "por cuestiones de seguridad inabilitamos este endpoint")
+	// time.AfterFunc(5*time.Second, func() {
+	// 	panic("Entrando en panico")
+	// })
 }
 
 func main() {
