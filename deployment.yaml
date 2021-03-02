@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: api-go
+  name: api-go
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api-go
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: api-go
+    spec:
+      containers:
+      - image: enzoaliatis/simple-service-golang:latest
+        name: simple-service-golang
+        ports:
+        - containerPort: 8080
+          name: http
+        resources: 
+          limits:
+            cpu: 50m
+            memory: 32Mi
+          requests:
+            cpu: 50m
+            memory: 32Mi
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: http
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: http
+status: {}

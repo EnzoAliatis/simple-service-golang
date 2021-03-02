@@ -15,17 +15,17 @@ spec:
     resources:
       limits:
         cpu: 50m
-        memory: 32M
+        memory: 32Mi
       requests:
         cpu: 50m
-        memory: 32M
+        memory: 32Mi
     livenessProbe:
       httpGet:
-        path: /hello
+        path: /health
         port: http
     readinessProbe:
       httpGet:
-        path: /hello
+        path: /health
         port: http
   dnsPolicy: ClusterFirst
   restartPolicy: Never
