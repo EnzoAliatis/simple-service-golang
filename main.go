@@ -24,11 +24,16 @@ func health(c *gin.Context) {
 	c.JSON(http.StatusOK, "Everything Ok")
 }
 
+func newF(c *gin.Context) {
+	c.JSON(http.StatusOK, "esta es la nueva feature")
+}
+
 func main() {
 	r := gin.Default()
 
 	r.GET("/hello", hello)
 	r.GET("/panic", panicGo)
 	r.GET("/health", health)
+	r.GET("/newf", newF)
 	r.Run()
 }
