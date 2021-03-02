@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: simple-go-api
+  name: simple-go-api
+spec:
+  containers:
+  - image: enzoaliatis/simple-service-golang:latest
+    name: simple-go-api
+    ports:
+    - containerPort: 8080
+      name: http
+    resources:
+      limits:
+        cpu: 50m
+        memory: 32M
+      requests:
+        cpu: 50m
+        memory: 32M
+    livenessProbe:
+      httpGet:
+        path: /hello
+        port: http
+    readinessProbe:
+      httpGet:
+        path: /hello
+        port: http
+  dnsPolicy: ClusterFirst
+  restartPolicy: Never
+status: {}

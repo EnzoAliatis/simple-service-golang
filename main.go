@@ -20,10 +20,15 @@ func panicGo(c *gin.Context) {
 	// })
 }
 
+func health(c *gin.Context) {
+	c.JSON(http.StatusOK, "Everything Ok")
+}
+
 func main() {
 	r := gin.Default()
 
 	r.GET("/hello", hello)
 	r.GET("/panic", panicGo)
+	r.GET("/health", health)
 	r.Run()
 }
